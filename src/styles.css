@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Repurposed legacy tokens — now mapped to a blue / light-blue / white palette.
+     Existing components reference these names, so we keep the names but shift values. */
+  --color-steel-900: var(--steel-900);
+  --color-steel-800: var(--steel-800);
+  --color-steel-700: var(--steel-700);
+  --color-steel-600: var(--steel-600);
+  --color-steel-500: var(--steel-500);
+  --color-steel-400: var(--steel-400);
+  --color-safety: var(--safety);
+  --color-safety-deep: var(--safety-deep);
+  --color-rubber: var(--rubber);
+
+  --font-display: "Cinzel", serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Blue / Light-Blue / White palette
+     - rubber       = deep navy (used as dark accents / footer / strong contrast)
+     - steel-900    = page background (almost white, slight blue tint)
+     - steel-800    = card surface (white)
+     - steel-700    = subtle border (light blue-gray)
+     - steel-600    = stronger border / divider
+     - steel-500    = secondary text
+     - steel-400    = tertiary text / muted
+     - safety       = primary brand blue
+     - safety-deep  = darker hover blue
+  */
+  --rubber: oklch(0.22 0.07 255);
+  /* deep navy */
+  --steel-900: oklch(0.985 0.005 240);
+  /* near-white background */
+  --steel-800: oklch(1 0 0);
+  /* white surfaces */
+  --steel-700: oklch(0.92 0.015 235);
+  /* light blue border */
+  --steel-600: oklch(0.84 0.025 235);
+  /* divider */
+  --steel-500: oklch(0.55 0.04 240);
+  /* secondary text */
+  --steel-400: oklch(0.45 0.05 245);
+  /* muted text */
+  --safety: oklch(0.55 0.18 250);
+  /* primary blue */
+  --safety-deep: oklch(0.42 0.2 255);
+  /* darker blue */
+
+  --background: var(--steel-900);
+  --foreground: var(--rubber);
+  --card: var(--steel-800);
+  --card-foreground: var(--rubber);
+  --popover: var(--steel-800);
+  --popover-foreground: var(--rubber);
+  --primary: var(--safety);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--steel-700);
+  --secondary-foreground: var(--rubber);
+  --muted: var(--steel-700);
+  --muted-foreground: var(--steel-500);
+  --accent: var(--safety);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: var(--steel-700);
+  --input: var(--steel-700);
+  --ring: var(--safety);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 0.9;
+  }
+  h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+  }
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+}
+
+@layer utilities {
+  .shadow-brutal {
+    box-shadow: 6px 6px 0 0 var(--safety);
+  }
+
+  .shadow-brutal-sm {
+    box-shadow: 4px 4px 0 0 var(--safety);
+  }
+
+  .shadow-brutal-lg {
+    box-shadow: 8px 8px 0 0 var(--safety);
+  }
+
+  .shadow-soft {
+    box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--safety) 35%, transparent);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--safety) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklab, var(--safety) 8%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .gradient-blue {
+    background: linear-gradient(135deg, var(--safety) 0%, var(--safety-deep) 100%);
+  }
+
+  .gradient-soft-blue {
+    background: linear-gradient(180deg, oklch(0.97 0.02 240) 0%, oklch(0.99 0.005 240) 100%);
+  }
+
+  /* Auto-scrolling marquee */
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee-scroll 35s linear infinite;
+  }
+
+  .animate-marquee-slow {
+    animation: marquee-scroll 55s linear infinite;
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .cta-bg {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url("https://i.pinimg.com/1200x/dc/04/17/dc0417195558f64db37b3e41274b2503.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+}

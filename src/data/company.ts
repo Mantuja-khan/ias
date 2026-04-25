@@ -1,0 +1,45 @@
+export const COMPANY = {
+  name: "INDUSTRIAL AUTOMATION SYSTEM PVT. LTD.",
+  short: "IAS Groups",
+  phones: ["+91-9992291037", "+91-9812474635", "+91-9649600535"],
+  emails: ["sales@iasgroups.com", "industrialautomation18@gmail.com"],
+  website: "www.iasgroups.com",
+  factory: "Plot No. 205, Sector-1 Aravali Bihar, Near Mansa Chowk, Bhiwadi",
+  regd: "1002, B-19, AVL-36, Sector-36A, Gurgaon, Haryana, India-122001",
+} as const;
+
+export const channelPartners: { name: string; tag: string }[] = [
+  { name: "Siemens", tag: "Automation" },
+  { name: "ABB", tag: "Drives & Motors" },
+  { name: "Allen Bradley", tag: "PLC Systems" },
+  { name: "Rockwell", tag: "Control" },
+  { name: "Schneider Electric", tag: "Power" },
+  { name: "Honeywell", tag: "Process" },
+  { name: "Endress+Hauser", tag: "Instrumentation" },
+  { name: "Emerson", tag: "Valves" },
+  { name: "IFM Electronic", tag: "Sensors" },
+  { name: "Rittal", tag: "Enclosures" },
+  { name: "Phoenix Contact", tag: "Connectivity" },
+  { name: "Pepperl+Fuchs", tag: "Sensing" },
+  { name: "Yokogawa", tag: "Field Devices" },
+  { name: "WIKA", tag: "Pressure" },
+];
+
+export const clients: { name: string; sector: string }[] = [
+  { name: "Maruti Suzuki", sector: "Automotive" },
+  { name: "Hero MotoCorp", sector: "Automotive" },
+  { name: "Tata Steel", sector: "Steel" },
+  { name: "JSW Steel", sector: "Steel" },
+  { name: "Reliance Industries", sector: "Petrochemical" },
+  { name: "Indian Oil", sector: "Oil & Gas" },
+  { name: "ONGC", sector: "Oil & Gas" },
+  { name: "Asian Paints", sector: "Chemicals" },
+  { name: "UltraTech Cement", sector: "Cement" },
+  { name: "Hindalco", sector: "Metals" },
+  { name: "NTPC", sector: "Power" },
+  { name: "BHEL", sector: "Heavy Engineering" },
+  { name: "Amul", sector: "Dairy" },
+  { name: "Mother Dairy", sector: "Dairy" },
+  { name: "Nestle India", sector: "F&B" },
+  { name: "Britannia", sector: "F&B" },
+];
