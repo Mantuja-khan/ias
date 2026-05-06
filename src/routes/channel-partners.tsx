@@ -56,24 +56,28 @@ function PartnersPage() {
           {channelPartners.map((p, i) => (
             <div
               key={p.name}
-              className="bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-6 rounded-md text-center group"
+              className="bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-6 rounded-md flex flex-col justify-between items-center h-[180px] group animate-fade-in"
             >
-              <div className="font-mono text-[10px] text-steel-500 uppercase tracking-widest mb-3">
+              <div className="font-mono text-[10px] text-steel-500 uppercase tracking-widest w-full text-left">
                 {String(i + 1).padStart(2, "0")} / {String(channelPartners.length).padStart(2, "0")}
               </div>
-              <div className="size-16 mx-auto gradient-blue text-white font-display font-black flex items-center justify-center rounded-md text-xl mb-4 group-hover:scale-110 transition-transform">
-                {p.name
-                  .split(/\s|\+/)
-                  .filter(Boolean)
-                  .slice(0, 2)
-                  .map((w) => w[0])
-                  .join("")}
-              </div>
-              <div className="font-display font-black text-base text-rubber uppercase leading-tight mb-1 group-hover:text-safety">
-                {p.name}
-              </div>
-              <div className="font-mono text-[10px] text-safety uppercase tracking-widest">
-                {p.tag}
+              <div className="flex-1 flex items-center justify-center w-full">
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="max-h-[80px] max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                ) : (
+                  <div className="size-16 mx-auto gradient-blue text-white font-display font-black flex items-center justify-center rounded-md text-xl group-hover:scale-110 transition-transform">
+                    {p.name
+                      .split(/\s|\+/)
+                      .filter(Boolean)
+                      .slice(0, 2)
+                      .map((w) => w[0])
+                      .join("")}
+                  </div>
+                )}
               </div>
             </div>
           ))}

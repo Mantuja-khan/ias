@@ -35,34 +35,11 @@ export function SiteHeader() {
 
   return (
     <>
-      {/* Top utility bar */}
-      <div className="bg-rubber text-white border-b border-safety/30">
-        <div className="max-w-[1440px] mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-sans tracking-wide gap-4">
-          <div className="flex gap-5 items-center overflow-hidden">
-            <span className="text-safety hidden sm:inline">● ISO 9001:2015 Certified</span>
-            <span className="hidden md:inline opacity-80">Pan-India Delivery</span>
-          </div>
-          <div className="hidden sm:flex gap-5 items-center opacity-90">
-            <a href={`tel:${COMPANY.phones[0]}`} className="hover:text-safety">
-              {COMPANY.phones[0]}
-            </a>
-            <span className="hidden lg:inline">|</span>
-            <a
-              href={`mailto:${COMPANY.emails[0]}`}
-              className="hover:text-safety hidden lg:inline"
-            >
-              {COMPANY.emails[0]}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Main header */}
       <header className="bg-white border-b border-steel-700 sticky top-0 z-50 shadow-sm">
-        {/* Full-width mobile search bar overlay */}
+        {/* Full-width search bar overlay inside the header */}
         {isSearchOpen && (
-          <div className="absolute inset-0 bg-white z-[60] flex items-center px-4 animate-in fade-in slide-in-from-top-4 duration-300">
-            <div className="flex-1 flex items-center gap-3">
+          <div className="absolute inset-0 bg-white z-[60] flex items-center px-4 sm:px-6 animate-in fade-in slide-in-from-top-4 duration-300">
+            <div className="max-w-[1440px] mx-auto w-full flex items-center gap-4">
               <input
                 autoFocus
                 type="text"
@@ -77,15 +54,16 @@ export function SiteHeader() {
                   setSearchQuery("");
                   setSearchResults([]);
                 }}
-                className="size-11 flex items-center justify-center text-rubber hover:text-safety transition-colors"
+                className="size-11 flex items-center justify-center text-rubber hover:text-safety transition-colors font-display font-black text-xl"
               >
-                <span className="text-2xl">✕</span>
+                ✕
               </button>
             </div>
           </div>
         )}
 
-        <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-4 flex items-center justify-between gap-4">
+        <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-3.5 flex items-center justify-between gap-4">
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0">
             <div className="size-11 gradient-blue flex items-center justify-center text-white font-display font-black text-lg rounded-md shadow-soft">
               IAS
@@ -100,37 +78,52 @@ export function SiteHeader() {
             </div>
           </Link>
 
-          {/* Desktop Search */}
-          <div className="hidden md:flex flex-1 max-w-xl relative mx-4">
-            <div className="flex flex-1">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="Search items..."
-                className="w-full bg-steel-900 border border-steel-700 text-rubber placeholder:text-steel-500 px-4 py-2.5 font-sans text-sm rounded-l-md focus:outline-none"
-              />
-              <button className="gradient-blue text-white font-display font-bold text-sm px-6 rounded-r-md hover:opacity-90 uppercase tracking-wide">
-                Search
-              </button>
-            </div>
-          </div>
+          {/* Desktop Navigation Link Menu */}
+          <nav className="hidden md:flex items-center gap-1 font-display font-bold uppercase tracking-wide text-xs lg:text-sm">
+            <Link
+              to="/"
+              activeOptions={{ exact: true }}
+              activeProps={{ className: "text-safety" }}
+              className="px-3 py-2 text-rubber hover:text-safety transition-colors whitespace-nowrap"
+            >
+              Home
+            </Link>
+            <Link
+              to="/products"
+              activeProps={{ className: "text-safety" }}
+              className="px-3 py-2 text-rubber hover:text-safety transition-colors whitespace-nowrap"
+            >
+              Products
+            </Link>
+            {mainNav.slice(1).map((n) => (
+              <Link
+                key={n.to}
+                to={n.to}
+                activeProps={{ className: "text-safety" }}
+                className="px-3 py-2 text-rubber hover:text-safety transition-colors whitespace-nowrap"
+              >
+                {n.label}
+              </Link>
+            ))}
+          </nav>
 
-          <div className="flex items-center gap-2">
-            {/* Mobile Search Trigger */}
+          {/* Actions */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Search Trigger Button */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="md:hidden size-10 flex items-center justify-center text-rubber hover:text-safety transition-colors"
+              className="size-10 flex items-center justify-center text-rubber hover:text-safety border border-steel-700 hover:border-safety rounded-md transition-colors"
+              aria-label="Search products"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
 
-            {/* Quote Button (Desktop) */}
+            {/* Quote Button */}
             <Link
               to="/contact"
-              className="hidden lg:inline-flex items-center gap-2 bg-safety text-white font-display font-bold text-sm px-5 py-2.5 rounded-md hover:bg-[color:var(--safety-deep)] transition-colors uppercase tracking-wide"
+              className="hidden lg:inline-flex items-center gap-2 bg-safety text-white font-display font-bold text-xs px-5 py-2.5 rounded-md hover:bg-[color:var(--safety-deep)] transition-colors uppercase tracking-wide whitespace-nowrap"
             >
               Get a Quote
             </Link>
@@ -138,11 +131,11 @@ export function SiteHeader() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden size-10 flex flex-col items-center justify-center gap-1.5 text-rubber hover:text-safety transition-all"
+              className="md:hidden size-10 flex flex-col items-center justify-center gap-1.5 text-rubber hover:text-safety border border-steel-700 hover:border-safety rounded-md transition-all"
             >
-              <span className={`w-6 h-0.5 bg-current transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`w-6 h-0.5 bg-current transition-all ${isMenuOpen ? "opacity-0" : ""}`} />
-              <span className={`w-6 h-0.5 bg-current transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              <span className={`w-5 h-0.5 bg-current transition-all ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`w-5 h-0.5 bg-current transition-all ${isMenuOpen ? "opacity-0" : ""}`} />
+              <span className={`w-5 h-0.5 bg-current transition-all ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </button>
           </div>
         </div>
@@ -225,37 +218,6 @@ export function SiteHeader() {
             </Link>
           </div>
         </div>
-
-        {/* Desktop Navbar (Static) */}
-        <nav className="hidden md:block border-t border-steel-700 bg-steel-900">
-          <div className="max-w-[1440px] mx-auto px-6 flex items-center text-sm font-display font-bold uppercase tracking-wide">
-            <Link
-              to="/"
-              activeOptions={{ exact: true }}
-              activeProps={{ className: "text-safety border-b-2 border-safety" }}
-              className="px-5 py-3.5 text-rubber hover:text-safety border-b-2 border-transparent transition-colors whitespace-nowrap"
-            >
-              Home
-            </Link>
-            <Link
-              to="/products"
-              activeProps={{ className: "text-safety border-b-2 border-safety" }}
-              className="px-5 py-3.5 text-rubber hover:text-safety border-b-2 border-transparent transition-colors whitespace-nowrap"
-            >
-              Products
-            </Link>
-            {mainNav.slice(1).map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                activeProps={{ className: "text-safety border-b-2 border-safety" }}
-                className="px-5 py-3.5 text-rubber hover:text-safety border-b-2 border-transparent transition-colors whitespace-nowrap"
-              >
-                {n.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
       </header>
     </>
   );

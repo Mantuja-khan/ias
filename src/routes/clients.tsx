@@ -53,39 +53,44 @@ function ClientsPage() {
       </section>
 
       <section className="py-10 border-b border-steel-700 bg-white">
-        <LogoMarquee items={clients.map((c) => ({ name: c.name, tag: c.sector }))} reverse />
+        <LogoMarquee items={clients.map((c) => ({ name: c.name, tag: c.sector, image: c.image }))} reverse />
       </section>
 
       <section className="max-w-[1440px] mx-auto px-6 py-16 w-full">
         <div className="flex items-end justify-between border-b-2 border-safety/30 pb-3 mb-8">
           <h2 className="font-display font-black text-2xl lg:text-3xl text-rubber uppercase tracking-tighter">
-            Authorized Network
+            Our Client Network
           </h2>
           <span className="font-sans text-xs text-steel-500 uppercase tracking-widest font-bold">
             {clients.length} Total Clients
           </span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-          {clients.map((c) => (
+          {clients.map((c, i) => (
             <div
               key={c.name}
-              className="bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-5 rounded-lg flex items-center gap-4 group"
+              className="bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-6 rounded-md flex flex-col justify-between items-center h-[180px] group animate-fade-in"
             >
-              <div className="size-11 shrink-0 bg-steel-900 border border-steel-700 text-safety group-hover:bg-safety group-hover:text-white font-display font-black flex items-center justify-center rounded-md text-base transition-colors">
-                {c.name
-                  .split(/\s/)
-                  .filter(Boolean)
-                  .slice(0, 2)
-                  .map((w) => w[0])
-                  .join("")}
+              <div className="font-mono text-[10px] text-steel-500 uppercase tracking-widest w-full text-left">
+                {String(i + 1).padStart(2, "0")} / {String(clients.length).padStart(2, "0")}
               </div>
-              <div>
-                <div className="font-display font-black text-sm text-rubber uppercase leading-tight group-hover:text-safety transition-colors">
-                  {c.name}
-                </div>
-                <div className="font-sans text-[9px] text-steel-500 uppercase tracking-widest mt-1">
-                  {c.sector}
-                </div>
+              <div className="flex-1 flex items-center justify-center w-full p-2">
+                {c.image ? (
+                  <img
+                    src={c.image}
+                    alt={c.name}
+                    className="max-h-[100px] max-w-full object-contain group-hover:scale-115 transition-transform duration-300"
+                  />
+                ) : (
+                  <div className="size-16 mx-auto gradient-blue text-white font-display font-black flex items-center justify-center rounded-md text-xl group-hover:scale-110 transition-transform">
+                    {c.name
+                      .split(/\s/)
+                      .filter(Boolean)
+                      .slice(0, 2)
+                      .map((w) => w[0])
+                      .join("")}
+                  </div>
+                )}
               </div>
             </div>
           ))}

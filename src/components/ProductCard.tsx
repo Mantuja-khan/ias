@@ -8,12 +8,11 @@ export function ProductCard({ product }: { product: Product }) {
       to="/product/$id"
       params={{ id: product.id }}
       preload="intent"
-      className="group block bg-white border border-black hover:border-safety hover:shadow-soft transition-all duration-200 rounded-md overflow-hidden cursor-pointer"
+      className="group block bg-white border border-black hover:border-safety hover:shadow-soft hover:scale-[1.03] transition-all duration-300 rounded-md overflow-hidden cursor-pointer"
     >
-      <div className="relative aspect-[3/2] border-b border-steel-700 group-hover:border-safety">
-        <ProductImage name={product.name} src={product.image} />
-        <div className="absolute top-3 left-3 bg-white/95 border border-safety px-2 py-1 text-[10px] font-sans font-bold text-safety uppercase tracking-widest rounded">
-          {product.sku}
+      <div className="relative aspect-[3/2] border-b border-steel-700 group-hover:border-safety overflow-hidden">
+        <div className="w-full h-full group-hover:scale-110 transition-transform duration-300">
+          <ProductImage name={product.name} src={product.image} />
         </div>
       </div>
       <div className="p-2.5">
@@ -26,18 +25,18 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="flex items-end justify-between pt-2 border-t border-steel-700">
           <div>
             <div className="text-[8px] font-sans text-steel-500 uppercase tracking-widest">
-              Unit Price
+              Availability
             </div>
-            <div className="font-display font-black text-lg text-safety tabular-nums">
-              ₹{product.price.toLocaleString()}
+            <div className="font-sans font-bold text-[10px] text-safety uppercase tracking-wider">
+              In Stock
             </div>
           </div>
           <div className="text-right">
             <div className="text-[8px] font-sans text-steel-500 uppercase tracking-widest">
-              Stock
+              Stock Quantity
             </div>
             <div className="font-sans font-bold text-[10px] text-rubber tabular-nums">
-              {product.stock} U
+              {product.stock} Units
             </div>
           </div>
         </div>

@@ -77,25 +77,6 @@ function CategoryPage() {
         <aside className="col-span-12 lg:col-span-3 space-y-6">
           <div className="bg-white border border-steel-700 p-5 rounded-md sticky top-32">
             <div className="font-display font-black text-sm uppercase tracking-widest text-rubber border-b border-steel-700 pb-3 mb-4">
-              Sub-Categories
-            </div>
-            <ul className="space-y-3">
-              {cat.groups.map((g) => (
-                <li key={g.name}>
-                  <a
-                    href={`#${g.name.replace(/\s+/g, "-")}`}
-                    className="font-mono text-xs uppercase tracking-widest text-steel-500 hover:text-safety flex items-center justify-between"
-                  >
-                    <span>{g.name}</span>
-                    <span className="text-safety tabular-nums font-bold">
-                      {g.items.length}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            <div className="font-display font-black text-sm uppercase tracking-widest text-rubber border-b border-steel-700 pb-3 mb-4 mt-8">
               Other Catalogs
             </div>
             <ul className="space-y-3">
@@ -116,27 +97,17 @@ function CategoryPage() {
           </div>
         </aside>
 
-        <main className="col-span-12 lg:col-span-9 space-y-16">
-          {cat.groups.map((group) => {
-            const groupItems = items.filter((p) => p.group === group.name);
-            return (
-              <section key={group.name} id={group.name.replace(/\s+/g, "-")}>
-                <div className="flex items-end justify-between border-b border-steel-700 pb-3 mb-6">
-                  <h2 className="font-display font-black text-xl lg:text-2xl text-rubber uppercase tracking-tighter">
-                    {group.name}
-                  </h2>
-                  <span className="font-mono text-xs text-steel-500 uppercase tracking-widest tabular-nums">
-                    {groupItems.length} Items
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-5">
-                  {groupItems.map((p) => (
-                    <ProductCard key={p.id} product={p} />
-                  ))}
-                </div>
-              </section>
-            );
-          })}
+        <main className="col-span-12 lg:col-span-9">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-5">
+            {items.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+          {items.length === 0 && (
+            <div className="text-center py-20 bg-white border border-steel-700 rounded-md">
+              <p className="font-mono text-xs uppercase tracking-widest text-steel-500">No products available in this category yet.</p>
+            </div>
+          )}
         </main>
       </div>
 

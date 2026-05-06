@@ -1,10 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useEffect, useRef } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ProductCard } from "@/components/ProductCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { categories, products } from "@/data/products";
 import { channelPartners, clients, COMPANY } from "@/data/company";
+
+import mechenicalImg from "@/assets/mechenical.png";
+import electricalImg from "@/assets/electrical.png";
+import instrumentationImg from "@/assets/instrumentation.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,45 +34,108 @@ export const Route = createFileRoute("/")({
 function Home() {
   const featured = products.slice(0, 5);
 
+  const heroImages = [
+    { src: instrumentationImg, alt: "Instrumentation" },
+    { src: electricalImg, alt: "Electrical" },
+    { src: mechenicalImg, alt: "Mechanical" },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const dragTranslate = useRef(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    dragStartX.current = e.clientX;
+    dragTranslate.current = 0;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    dragTranslate.current = e.clientX - dragStartX.current;
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (dragTranslate.current < -50) {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    } else if (dragTranslate.current > 50) {
+      setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    dragStartX.current = e.touches[0].clientX;
+    dragTranslate.current = 0;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    dragTranslate.current = e.touches[0].clientX - dragStartX.current;
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (dragTranslate.current < -50) {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    } else if (dragTranslate.current > 50) {
+      setCurrentIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+    }
+  };
+
   return (
     <div className="min-h-dvh bg-steel-900 text-rubber flex flex-col">
       <SiteHeader />
 
-      {/* HERO - NO IMAGES, CENTERED CONTENT */}
-      <section className="relative border-b border-steel-700 overflow-hidden cta-bg">
-        <div className="absolute inset-0 grid-bg opacity-70" />
-        <div className="absolute -top-32 -right-32 size-[500px] rounded-full gradient-blue opacity-10 blur-3xl" />
-        
-        <div className="relative max-w-[1440px] mx-auto px-6 py-20 lg:py-32 flex flex-col items-center text-center">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 bg-white border border-safety text-safety font-sans font-bold text-[10px] sm:text-xs px-4 py-2 mb-8 uppercase tracking-widest rounded-full shadow-sm">
-              <span className="size-2 bg-safety rounded-full animate-pulse" />
-              ISO 9001:2015 · Pan-India Delivery
-            </div>
-            <h1 className="font-display font-black text-white uppercase leading-[0.9] tracking-tighter mb-8 text-4xl sm:text-6xl lg:text-7xl">
-              Industrial Automation,<br />
-              <span className="text-safety">Engineered for Scale.</span>
-            </h1>
-            <p className="font-sans text-white/80 mx-auto max-w-[65ch] text-base lg:text-lg mb-12 leading-relaxed">
-              Single-source supply for instrumentation, electrical and
-              mechanical equipment — backed by an in-house engineering team
-              for panel design, PLC/SCADA, and turnkey commissioning.
-            </p>
-            <div className="flex flex-row justify-center gap-3 sm:gap-6">
-              <Link
-                to="/products"
-                className="gradient-blue text-white font-display font-black text-[10px] sm:text-base lg:text-xl uppercase px-4 sm:px-10 py-4 rounded-md shadow-soft hover:opacity-90 transition-opacity whitespace-nowrap"
-              >
-                Browse Products
-              </Link>
-              <Link
-                to="/contact"
-                className="bg-white text-rubber border border-steel-600 font-display font-black text-[10px] sm:text-base lg:text-xl uppercase px-4 sm:px-10 py-4 rounded-md hover:border-safety hover:text-safety transition-colors whitespace-nowrap"
-              >
-                Request Quote
-              </Link>
-            </div>
+      {/* HERO SLIDER */}
+      <section 
+        className="relative border-b border-steel-700 overflow-hidden select-none cursor-grab active:cursor-grabbing bg-steel-950 flex items-center justify-center w-full"
+        style={{ 
+          clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 35px), 50% 100%, 0 calc(100% - 35px))",
+        }}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="w-full aspect-[16/9] md:aspect-[21/9] max-h-[580px] relative overflow-hidden">
+          <div className="absolute inset-0 flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+            {heroImages.map((img, idx) => (
+              <div key={idx} className="w-full h-full shrink-0 relative">
+                <img 
+                  src={img.src} 
+                  alt={img.alt} 
+                  className="w-full h-full object-cover object-top pointer-events-none" 
+                />
+              </div>
+            ))}
           </div>
+        </div>
+
+        {/* Slide Indicators / Navigation dots */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+          {heroImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`size-2.5 rounded-full transition-all duration-300 ${currentIndex === idx ? "bg-safety w-6" : "bg-white/40 hover:bg-white"}`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </section>
 
@@ -99,7 +167,7 @@ function Home() {
                 +
               </div>
               <div className="font-sans text-xs text-steel-500 uppercase tracking-widest mb-4">
-                0{i + 1} / {String(cat.groups.flatMap((g) => g.items).length).padStart(2, "0")} SKUs
+                0{i + 1} / {String(products.filter((p) => p.category === cat.slug).length).padStart(2, "0")} SKUs
               </div>
               <h3 className="font-display font-black text-2xl lg:text-3xl text-rubber uppercase tracking-tighter mb-4 group-hover:text-safety">
                 {cat.name}
@@ -155,7 +223,7 @@ function Home() {
             View More Clients →
           </Link>
         </div>
-        <LogoMarquee items={clients.map((c) => ({ name: c.name, tag: c.sector }))} reverse speed="slow" />
+        <LogoMarquee items={clients.map((c) => ({ name: c.name, tag: c.sector, image: c.image }))} reverse speed="slow" />
       </section>
 
       {/* INDUSTRIES WE DEALS IN */}

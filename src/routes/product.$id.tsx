@@ -62,8 +62,10 @@ function ProductPage() {
       <section className="max-w-[1440px] mx-auto px-6 py-8 w-full grid grid-cols-12 gap-8 lg:gap-12">
         <div className="col-span-12 lg:col-span-6 xl:col-span-5">
           <div className="bg-white border border-steel-700 shadow-soft p-4 rounded-lg">
-            <div className="aspect-square border border-steel-700 rounded-md overflow-hidden max-w-[500px] mx-auto">
-              <ProductImage name={product.name} src={product.image} />
+            <div className="aspect-square border border-steel-700 rounded-md overflow-hidden max-w-[500px] mx-auto group cursor-pointer">
+              <div className="w-full h-full hover:scale-110 transition-transform duration-300">
+                <ProductImage name={product.name} src={product.image} />
+              </div>
             </div>
           </div>
         </div>
@@ -91,18 +93,18 @@ function ProductPage() {
             <div className="flex items-end justify-between mb-5">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-widest text-steel-500 mb-1 font-bold">
-                  Unit Price (excl. tax)
+                  Availability
                 </div>
-                <div className="font-display font-black text-5xl text-safety tabular-nums leading-none">
-                  ₹{product.price.toLocaleString()}
+                <div className="font-display font-black text-2xl text-safety uppercase tracking-tight">
+                  In Stock
                 </div>
               </div>
               <div className="text-right">
                 <div className="font-mono text-[10px] uppercase tracking-widest text-steel-500 mb-1 font-bold">
-                  In Stock
+                  Stock Quantity
                 </div>
                 <div className="font-mono font-bold text-rubber text-lg tabular-nums">
-                  {product.stock} U
+                  {product.stock} Units
                 </div>
               </div>
             </div>
