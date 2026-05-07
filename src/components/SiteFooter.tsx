@@ -3,8 +3,14 @@ import { COMPANY } from "@/data/company";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-rubber text-white mt-24 border-t-4 border-safety">
-      <div className="max-w-[1440px] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer 
+      className="text-white mt-24 border-t-4 border-safety bg-cover bg-center bg-no-repeat relative overflow-hidden"
+      style={{ backgroundImage: "url('https://i.pinimg.com/1200x/3e/f3/e2/3ef3e23e8bad050d40a4fc02ffc6f964.jpg')" }}
+    >
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-rubber/90 backdrop-blur-[2px]" />
+
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="lg:col-span-1">
           <div className="flex items-center gap-3 mb-5">
             <div className="size-12 gradient-blue flex items-center justify-center text-white font-display font-black rounded-md">
@@ -121,7 +127,7 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10">
+      <div className="relative z-10 border-t border-white/10">
         <div className="max-w-[1440px] mx-auto px-6 py-4 text-[11px] font-sans tracking-wide text-white/60 flex flex-col sm:flex-row justify-between gap-2">
           <span>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</span>
           <span className="text-safety">{COMPANY.website}</span>

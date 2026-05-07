@@ -6,6 +6,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { categories, products } from "@/data/products";
 import { channelPartners, clients, COMPANY } from "@/data/company";
+import { services } from "@/data/services";
 
 import mechenicalImg from "@/assets/mechenical.png";
 import electricalImg from "@/assets/electrical.png";
@@ -32,8 +33,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const featured = products.slice(0, 5);
-
   const heroImages = [
     { src: instrumentationImg, alt: "Instrumentation" },
     { src: electricalImg, alt: "Electrical" },
@@ -144,9 +143,9 @@ function Home() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 border-b border-steel-700 pb-6">
           <div>
             <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2">
-              [01] Product Categories
+              Product Categories
             </div>
-            <h2 className="font-display font-black text-3xl lg:text-4xl text-rubber uppercase tracking-tighter">
+            <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-rubber uppercase tracking-tighter">
               Browse Catalog
             </h2>
           </div>
@@ -184,14 +183,69 @@ function Home() {
         </div>
       </section>
 
+      {/* FEATURED SERVICES */}
+      <section className="bg-steel-950 py-16 lg:py-20 border-y border-steel-700">
+        <div className="max-w-[1440px] mx-auto px-6 w-full">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 border-b border-steel-700 pb-6">
+            <div>
+              <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2">
+                Featured Services
+              </div>
+              <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-white uppercase tracking-tighter">
+                Engineering & Repair Services
+              </h2>
+            </div>
+            <Link
+              to="/services"
+              className="bg-safety text-white font-sans font-bold text-xs px-5 py-3 rounded-md hover:opacity-90 uppercase tracking-widest whitespace-nowrap inline-block"
+            >
+              View All Services →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.slice(0, 4).map((s) => (
+              <div
+                key={s.no}
+                className="group bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-4 rounded-md flex flex-col justify-between animate-fade-in"
+              >
+                <div>
+                  <div className="aspect-[3/2] rounded border border-steel-700 overflow-hidden mb-4 relative bg-steel-950">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="font-mono text-[10px] text-safety uppercase tracking-widest font-bold">
+                      Service / {s.no}
+                    </div>
+                    <div className="size-8 gradient-blue text-white font-display font-black flex items-center justify-center rounded text-xs">
+                      {s.no}
+                    </div>
+                  </div>
+                  <h3 className="font-display font-black text-base text-rubber uppercase leading-tight mb-2 group-hover:text-safety min-h-[2.5rem] line-clamp-2">
+                    {s.title}
+                  </h3>
+                  <p className="text-xs text-steel-500 leading-relaxed line-clamp-3">
+                    {s.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CHANNEL PARTNERS MARQUEE */}
-      <section className="bg-white border-y border-steel-700 py-12">
+      <section className="bg-white border-b border-steel-700 py-12">
         <div className="max-w-[1440px] mx-auto px-6 mb-8 flex items-end justify-between gap-4">
           <div>
             <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2">
-              [02] Authorised Network
+              Authorised Network
             </div>
-            <h2 className="font-display font-black text-2xl lg:text-3xl text-rubber uppercase tracking-tighter">
+            <h2 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-rubber uppercase tracking-tighter">
               Channel Partners
             </h2>
           </div>
@@ -210,9 +264,9 @@ function Home() {
         <div className="max-w-[1440px] mx-auto px-6 mb-8 flex items-end justify-between gap-4">
           <div>
             <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2">
-              [03] Trusted By
+              Trusted By
             </div>
-            <h2 className="font-display font-black text-2xl lg:text-3xl text-rubber uppercase tracking-tighter">
+            <h2 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-rubber uppercase tracking-tighter">
               Our Clients
             </h2>
           </div>
@@ -230,9 +284,9 @@ function Home() {
       <section className="max-w-[1440px] mx-auto px-6 py-16 lg:py-20 w-full overflow-hidden">
         <div className="flex flex-col mb-12 border-b border-steel-700 pb-6">
           <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2 text-left">
-            [04] Market Verticals
+            Market Verticals
           </div>
-          <h2 className="font-display font-black text-3xl lg:text-4xl text-rubber uppercase tracking-tighter text-left">
+          <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-rubber uppercase tracking-tighter text-left">
             Industries We Deals In
           </h2>
         </div>
@@ -303,31 +357,6 @@ function Home() {
         </div>
       </section>
 
-      {/* FEATURED PRODUCTS */}
-      <section className="max-w-[1440px] mx-auto px-6 py-16 lg:py-20 w-full">
-        <div className="flex justify-between items-end mb-12 border-b border-steel-700 pb-6">
-          <div>
-            <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2 text-left">
-              [05] Best Sellers
-            </div>
-            <h2 className="font-display font-black text-3xl lg:text-4xl text-rubber uppercase tracking-tighter text-left">
-              Top Spec
-            </h2>
-          </div>
-          <Link
-            to="/products"
-            className="hidden sm:flex font-sans text-xs font-bold text-safety hover:text-rubber uppercase tracking-widest items-center gap-2"
-          >
-            View All →
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
-          {featured.map((p) => (
-            <ProductCard key={p.id} product={p} />
-          ))}
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="max-w-[1440px] mx-auto px-6 pb-16 w-full">

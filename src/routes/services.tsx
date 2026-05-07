@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { services } from "@/data/services";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -21,45 +22,6 @@ export const Route = createFileRoute("/services")({
   }),
   component: ServicesPage,
 });
-
-const services = [
-  {
-    no: "01",
-    title: "Control Panel Design & Manufacturing",
-    desc: "PCC, MCC, PLC, VFD, APFC and customised control panels designed and built in-house to IS/IEC standards.",
-    bullets: ["MCC & PCC up to 6300A", "VFD & soft-starter panels", "PLC/HMI integration", "Type-tested designs"],
-  },
-  {
-    no: "02",
-    title: "PLC, SCADA & HMI Programming",
-    desc: "Allen Bradley, Siemens, Mitsubishi, Delta and Schneider PLC programming with SCADA & HMI development for any process.",
-    bullets: ["Ladder, FBD, ST", "WinCC, FactoryTalk, iFix", "Recipe & batch logic", "OPC-UA / Modbus / Profinet"],
-  },
-  {
-    no: "03",
-    title: "Instrumentation & Field Commissioning",
-    desc: "Loop checking, calibration, hook-up and commissioning of process instrumentation across plants.",
-    bullets: ["Loop checks & calibration", "Hook-up engineering", "DCS interfacing", "HART & Foundation Fieldbus"],
-  },
-  {
-    no: "04",
-    title: "Retrofitting & Modernisation",
-    desc: "Replace obsolete relay logic and legacy controls with modern PLC/SCADA-based automation with minimum downtime.",
-    bullets: ["Brownfield upgrades", "Drive retrofits", "Energy optimisation", "Migration support"],
-  },
-  {
-    no: "05",
-    title: "Annual Maintenance Contracts",
-    desc: "Comprehensive AMC for control panels, drives, instrumentation, motors and complete plant electricals.",
-    bullets: ["Preventive maintenance", "Breakdown response", "Spare-part management", "On-site engineers"],
-  },
-  {
-    no: "06",
-    title: "Turnkey Automation Projects",
-    desc: "Concept-to-commissioning EPC delivery: engineering, procurement, fabrication, installation and training.",
-    bullets: ["Project management", "BOQ & engineering", "Site execution", "Training & handover"],
-  },
-];
 
 function ServicesPage() {
   return (
@@ -85,34 +47,35 @@ function ServicesPage() {
       </section>
 
       <section className="max-w-[1440px] mx-auto px-6 py-16 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {services.map((s) => (
             <div
               key={s.no}
-              className="group bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-7 rounded-md"
+              className="group bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-4 rounded-md flex flex-col justify-between"
             >
-              <div className="flex items-start justify-between mb-5">
-                <div className="font-mono text-xs text-safety uppercase tracking-widest font-bold">
-                  Service / {s.no}
+              <div>
+                <div className="aspect-[3/2] rounded border border-steel-700 overflow-hidden mb-4 relative bg-steel-950">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
-                <div className="size-10 gradient-blue text-white font-display font-black flex items-center justify-center rounded-md text-sm">
-                  {s.no}
+                <div className="flex items-start justify-between mb-3">
+                  <div className="font-mono text-[10px] text-safety uppercase tracking-widest font-bold">
+                    Service / {s.no}
+                  </div>
+                  <div className="size-8 gradient-blue text-white font-display font-black flex items-center justify-center rounded text-xs">
+                    {s.no}
+                  </div>
                 </div>
+                <h3 className="font-display font-black text-base text-rubber uppercase leading-tight mb-2 group-hover:text-safety min-h-[2.5rem] line-clamp-2">
+                  {s.title}
+                </h3>
+                <p className="text-xs text-steel-500 leading-relaxed line-clamp-3">
+                  {s.desc}
+                </p>
               </div>
-              <h3 className="font-display font-black text-xl text-rubber uppercase leading-tight mb-3 group-hover:text-safety">
-                {s.title}
-              </h3>
-              <p className="text-sm text-steel-500 leading-relaxed mb-5">
-                {s.desc}
-              </p>
-              <ul className="space-y-2">
-                {s.bullets.map((b) => (
-                  <li key={b} className="flex gap-2 text-xs font-mono text-rubber">
-                    <span className="text-safety font-bold">▸</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>

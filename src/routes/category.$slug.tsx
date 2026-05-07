@@ -98,7 +98,7 @@ function CategoryPage() {
         </aside>
 
         <main className="col-span-12 lg:col-span-9">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-5">
             {items.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
