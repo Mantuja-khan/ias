@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { categories, products } from "@/data/products";
 import { COMPANY } from "@/data/company";
+
+import logo from "@/assets/iaslogo.png";
 
 const mainNav: Array<{ to: "/" | "/services" | "/clients" | "/channel-partners" | "/contact"; label: string }> = [
   { to: "/", label: "Home" },
@@ -16,6 +18,30 @@ export function SiteHeader() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<typeof products>([]);
+  
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down the page, page goes up visually
+        setIsVisible(false);
+      } else {
+        // Scrolling up the page, page goes down visually
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -35,7 +61,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="bg-white border-b border-steel-700 sticky top-0 z-50 shadow-sm">
+      <header className={`bg-white border-b border-steel-700 sticky top-0 z-50 shadow-sm transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
         {/* Full-width search bar overlay inside the header */}
         {isSearchOpen && (
           <div className="absolute inset-0 bg-white z-[60] flex items-center px-4 sm:px-6 animate-in fade-in slide-in-from-top-4 duration-300">
@@ -64,18 +90,12 @@ export function SiteHeader() {
 
         <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-3.5 flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0">
-            <div className="size-11 gradient-blue flex items-center justify-center text-white font-display font-black text-lg rounded-md shadow-soft">
-              IAS
-            </div>
-            <div className="leading-tight">
-              <div className="font-display font-black text-sm sm:text-base lg:text-lg text-rubber uppercase tracking-tight">
-                Industrial Automation
-              </div>
-              <div className="font-sans text-[8px] sm:text-[10px] uppercase tracking-widest text-safety">
-                System Pvt. Ltd.
-              </div>
-            </div>
+          <Link to="/" className="flex items-center shrink-0">
+            <img
+              src={logo}
+              alt="Industrial Automation System"
+              className="h-16 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation Link Menu */}

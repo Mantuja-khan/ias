@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, useLocation } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
@@ -30,9 +30,11 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  const location = useLocation();
+
   return (
-    <>
+    <div key={location.pathname} className="animate-page-fade w-full">
       <Outlet />
-    </>
+    </div>
   );
 }
