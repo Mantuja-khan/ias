@@ -359,27 +359,30 @@ function Home() {
 
 
       {/* CTA */}
-      <section className="max-w-[1440px] mx-auto px-6 pb-16 w-full">
-        <div className="cta-bg text-white p-10 lg:p-14 rounded-lg shadow-soft flex flex-col lg:flex-row justify-between items-center gap-6">
-          <div className="text-left">
-            <h2 className="font-display font-black text-2xl lg:text-3xl uppercase tracking-tighter mb-2">
+      {/* CTA */}
+      <section 
+        className="text-white relative border-t border-steel-700 py-16 lg:py-24 w-full bg-cover bg-center"
+        style={{ backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/736x/35/b6/67/35b667a4082809c4af5fe38a7e035b52.jpg')" }}
+      >
+        <div className="max-w-[1440px] mx-auto px-6 relative z-10 flex flex-col lg:flex-row justify-between items-center gap-8">
+          <div className="text-center lg:text-left">
+            <h2 className="font-display font-black text-3xl md:text-4xl lg:text-5xl uppercase tracking-tighter mb-4">
               Procurement made simple.
             </h2>
-            <p className="text-white/85 max-w-xl">
+            <p className="text-white/90 max-w-2xl text-base md:text-lg font-sans leading-relaxed">
               Send us your BOQ or RFQ — get a technical quote within 48 hours
               with genuine OEM pricing & lead times.
-            </p>
-            <p className="mt-4 font-sans text-sm text-white/80">
-              📞 {COMPANY.phones[0]} &nbsp;·&nbsp; ✉ {COMPANY.emails[0]}
             </p>
           </div>
           <Link
             to="/contact"
-            className="bg-white text-safety font-display font-black text-lg uppercase px-8 py-4 rounded-md hover:bg-steel-900 transition-colors whitespace-nowrap"
+            className="bg-safety text-white font-display font-black text-xl uppercase px-10 py-5 rounded-md hover:bg-[color:var(--safety-deep)] shadow-soft transition-all hover:scale-105 whitespace-nowrap shrink-0"
           >
             Get a Quote →
           </Link>
         </div>
+        {/* Overlay for extra pop */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/70 pointer-events-none" />
       </section>
 
       <SiteFooter />

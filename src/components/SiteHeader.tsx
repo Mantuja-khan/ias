@@ -18,7 +18,7 @@ export function SiteHeader() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<typeof products>([]);
-  
+
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -90,12 +90,20 @@ export function SiteHeader() {
 
         <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-3.5 flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center shrink-0">
+          <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink-0 group">
             <img
               src={logo}
               alt="Industrial Automation System"
-              className="h-16 w-auto object-contain"
+              className="h-12 sm:h-14 md:h-16 w-auto object-contain group-hover:scale-105 transition-transform"
             />
+            <div className="flex flex-col justify-center">
+              <span className="font-display font-black text-[11px] sm:text-sm md:text-base lg:text-lg text-rubber leading-none tracking-tight uppercase transition-colors">
+                Industrial Automation
+              </span>
+              <span className="font-sans font-bold text-[8px] sm:text-[10px] md:text-xs uppercase tracking-widest text-safety leading-tight mt-0.5 md:mt-1">
+                Pvt. Ltd.
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation Link Menu */}
@@ -138,6 +146,14 @@ export function SiteHeader() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
+            </button>
+
+            {/* Catalogue Button */}
+            <button
+              onClick={() => alert("Catalogue coming soon!")}
+              className="hidden lg:inline-flex items-center gap-2 border border-steel-700 text-rubber font-display font-bold text-xs px-4 py-2.5 rounded-md hover:border-safety hover:text-safety transition-colors uppercase tracking-wide whitespace-nowrap"
+            >
+              Catalogue
             </button>
 
             {/* Quote Button */}
@@ -229,13 +245,24 @@ export function SiteHeader() {
                 {n.label}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-4 mx-4 bg-safety text-white text-center font-display font-bold text-sm py-4 rounded-md uppercase tracking-widest"
-            >
-              Get a Quote
-            </Link>
+            <div className="mt-4 grid grid-cols-2 gap-3 px-4">
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  alert("Catalogue coming soon!");
+                }}
+                className="bg-steel-700 text-white text-center font-display font-bold text-sm py-3.5 rounded-md uppercase tracking-widest"
+              >
+                Catalogue
+              </button>
+              <Link
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="bg-safety text-white text-center font-display font-bold text-sm py-3.5 rounded-md uppercase tracking-widest"
+              >
+                Quote
+              </Link>
+            </div>
           </div>
         </div>
       </header>

@@ -109,41 +109,14 @@ function ProductPage() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-3">
-              <div className="flex border border-steel-700 rounded-md overflow-hidden h-12">
-                <button className="px-4 font-display font-black text-xl text-rubber hover:bg-steel-900">−</button>
-                <input
-                  type="text"
-                  defaultValue="1"
-                  className="w-12 bg-transparent text-center font-mono text-rubber outline-none text-sm"
-                />
-                <button className="px-4 font-display font-black text-xl text-rubber hover:bg-steel-900">+</button>
-              </div>
-              <div className="flex-1 flex flex-col sm:flex-row gap-3">
-                <button className="flex-1 gradient-blue text-white font-display font-black text-xs sm:text-sm lg:text-base uppercase px-4 py-3 rounded-md hover:opacity-90 transition-opacity h-12 truncate">
-                  Add to Cart
-                </button>
-                <Link
-                  to="/contact"
-                  className="flex-1 flex items-center justify-center bg-steel-900 text-rubber border border-steel-700 font-display font-black text-xs sm:text-sm lg:text-base uppercase px-4 py-3 rounded-md hover:border-safety hover:text-safety transition-colors h-12 truncate"
-                >
-                  Request Bulk Quote
-                </Link>
-              </div>
+            <div className="flex w-full">
+              <Link
+                to="/contact"
+                className="flex-1 flex items-center justify-center gradient-blue text-white font-display font-black text-sm sm:text-base uppercase px-6 py-4 rounded-md hover:opacity-90 shadow-soft transition-all hover:scale-[1.02] h-14"
+              >
+                Request Bulk Quote →
+              </Link>
             </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2 font-mono text-[10px] uppercase tracking-widest">
-            {[
-              ["48 HR", "Dispatch"],
-              ["24 MO", "Warranty"],
-              ["CE", "Certified"],
-            ].map(([k, v]) => (
-              <div key={k} className="bg-white border border-steel-700 p-3 text-center rounded-md">
-                <div className="font-display font-black text-safety text-lg">{k}</div>
-                <div className="text-steel-500">{v}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

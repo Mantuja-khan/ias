@@ -191,81 +191,35 @@ function ContactPage() {
         </div>
       </section>
 
-      {/* GLOBAL REACH MAP */}
+      {/* LOCATION MAP */}
       <section className="border-t border-steel-700 bg-white py-16 lg:py-24">
         <div className="max-w-[1440px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-10">
             <div>
               <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2">
-                [03] Global Presence
+                [03] Visit Us
               </div>
               <h2 className="font-display font-black text-3xl lg:text-4xl text-rubber uppercase tracking-tighter">
-                Global Network
+                Find Our Office
               </h2>
             </div>
             <p className="font-sans text-sm text-steel-500 max-w-md">
-              Expanding our technical expertise across borders. Currently serving
-              heavy industry sectors in India and key African/Asian markets.
+              Come visit our headquarters and manufacturing facility to discuss your industrial automation needs directly with our specialists.
             </p>
           </div>
 
-          <div className="relative aspect-[21/9] bg-steel-900 rounded-xl overflow-hidden shadow-brutal border border-steel-700">
-            <div className="absolute inset-0 grid-bg opacity-30" />
-            
-            {/* World Map Background (SVG Pattern) */}
-            <svg className="absolute inset-0 w-full h-full text-safety opacity-[0.05]" viewBox="0 0 1000 500">
-              <path fill="currentColor" d="M150,150 Q200,100 250,150 T350,150 T450,100 T550,150 T650,150 T750,100 T850,150 T950,150 L950,350 Q900,400 850,350 T750,350 T650,400 T550,350 T450,350 T350,400 T250,350 T150,350 Z" />
-              <path fill="currentColor" d="M50,100 L100,50 L150,100 L100,150 Z" />
-            </svg>
-
-            {/* Points */}
-            {[
-              { name: "India", x: 72, y: 52, info: "Headquarters & R&D" },
-              { name: "Nepal", x: 74, y: 48, info: "Sales & Support" },
-              { name: "Zambia", x: 53, y: 74, info: "Regional Distribution" },
-              { name: "Zimbabwe", x: 54, y: 79, info: "Service Center" },
-            ].map((p) => (
-              <div
-                key={p.name}
-                className="absolute group"
-                style={{ left: `${p.x}%`, top: `${p.y}%` }}
-              >
-                <div className="relative">
-                  {/* Ping animation */}
-                  <div className="absolute -inset-3 bg-safety rounded-full animate-ping opacity-30" />
-                  {/* Core dot */}
-                  <div className="size-3.5 bg-safety border-2 border-white rounded-full shadow-lg relative z-10" />
-
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-2 bg-rubber text-white text-[10px] font-sans font-bold whitespace-nowrap rounded shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none z-20">
-                    <div className="text-safety uppercase tracking-widest mb-0.5 font-black">
-                      {p.name}
-                    </div>
-                    <div className="opacity-70">{p.info}</div>
-                    {/* Arrow */}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-x-4 border-x-transparent border-t-4 border-t-rubber" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 mt-12 bg-steel-900/5 p-8 rounded-lg border border-steel-700/50">
-            {[
-              ["India", "Regional Hub"],
-              ["Nepal", "Strategic Sales"],
-              ["Zambia", "Mining Sector"],
-              ["Zimbabwe", "Industrial Support"],
-            ].map(([k, v]) => (
-              <div key={k} className="border-l-2 border-safety pl-5">
-                <div className="font-display font-black text-2xl text-rubber uppercase tracking-tighter">
-                  {k}
-                </div>
-                <div className="font-sans text-[10px] text-safety uppercase tracking-widest font-bold mt-1">
-                  {v}
-                </div>
-              </div>
-            ))}
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] bg-steel-900 rounded-xl overflow-hidden shadow-soft border border-steel-700 h-[400px] md:h-[500px]">
+            <iframe
+              title="Industrial Automation Systems Map"
+              src="https://maps.google.com/maps?q=28.198996,76.821281&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full grayscale-[20%] contrast-[110%]"
+            />
           </div>
         </div>
       </section>

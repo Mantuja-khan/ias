@@ -4,7 +4,7 @@ import { COMPANY } from "@/data/company";
 export function SiteFooter() {
   return (
     <footer 
-      className="text-white mt-24 border-t-4 border-safety bg-cover bg-center bg-no-repeat relative overflow-hidden"
+      className="text-white border-t-4 border-safety bg-cover bg-center bg-no-repeat relative overflow-hidden"
       style={{ backgroundImage: "url('https://i.pinimg.com/1200x/3e/f3/e2/3ef3e23e8bad050d40a4fc02ffc6f964.jpg')" }}
     >
       {/* Dark overlay for text readability */}

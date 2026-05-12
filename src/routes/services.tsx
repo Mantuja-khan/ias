@@ -80,23 +80,7 @@ function ServicesPage() {
           ))}
         </div>
 
-        <div className="mt-16 gradient-blue text-white p-10 lg:p-14 rounded-lg flex flex-col lg:flex-row items-center justify-between gap-6 shadow-soft">
-          <div>
-            <h2 className="font-display font-black text-2xl lg:text-3xl uppercase tracking-tighter mb-2">
-              Need a custom scope?
-            </h2>
-            <p className="text-white/85 max-w-xl">
-              Share your single line, P&ID or RFQ — our engineers will revert
-              with a technical proposal within 48 hours.
-            </p>
-          </div>
-          <Link
-            to="/contact"
-            className="bg-white text-safety font-display font-black text-lg uppercase px-8 py-4 rounded-md hover:bg-steel-900 transition-colors whitespace-nowrap"
-          >
-            Talk to an Engineer →
-          </Link>
-        </div>
+
       </section>
 
       <SiteFooter />
