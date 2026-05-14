@@ -4,6 +4,7 @@ import { categories, products } from "@/data/products";
 import { COMPANY } from "@/data/company";
 
 import logo from "@/assets/iaslogo.png";
+import cataloguePdf from "@/assets/IASPL Company Profile.pdf";
 
 const mainNav: Array<{ to: "/" | "/services" | "/clients" | "/channel-partners" | "/contact"; label: string }> = [
   { to: "/", label: "Home" },
@@ -150,7 +151,7 @@ export function SiteHeader() {
 
             {/* Catalogue Button */}
             <button
-              onClick={() => alert("Catalogue coming soon!")}
+              onClick={() => window.open(cataloguePdf, "_blank")}
               className="hidden lg:inline-flex items-center gap-2 border border-steel-700 text-rubber font-display font-bold text-xs px-4 py-2.5 rounded-md hover:border-safety hover:text-safety transition-colors uppercase tracking-wide whitespace-nowrap"
             >
               Catalogue
@@ -249,7 +250,7 @@ export function SiteHeader() {
               <button
                 onClick={() => {
                   setIsMenuOpen(false);
-                  alert("Catalogue coming soon!");
+                  window.open(cataloguePdf, "_blank");
                 }}
                 className="bg-steel-700 text-white text-center font-display font-bold text-sm py-3.5 rounded-md uppercase tracking-widest"
               >
