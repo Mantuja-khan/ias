@@ -1,7 +1,7 @@
 export const COMPANY = {
   name: "INDUSTRIAL AUTOMATION SYSTEM PVT. LTD.",
   short: "IAS Groups",
-  phones: ["+91-9992291037", "+91-9812474635", "+91-9649600535"],
+  phones: ["+91-9992291037", "+91-9812474635", "+91-9649600775"],
   emails: ["sales@iasgroups.com", "industrialautomation18@gmail.com"],
   website: "www.iasgroups.com",
   factory: "Plot No. 205, Sector-1 Aravali Bihar, Near Mansa Chowk, Bhiwadi",
