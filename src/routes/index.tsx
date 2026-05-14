@@ -100,9 +100,6 @@ function Home() {
       {/* HERO SLIDER */}
       <section 
         className="relative border-b border-steel-700 overflow-hidden select-none cursor-grab active:cursor-grabbing bg-steel-950 flex items-center justify-center w-full"
-        style={{ 
-          clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 35px), 50% 100%, 0 calc(100% - 35px))",
-        }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -111,14 +108,14 @@ function Home() {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="w-full aspect-[16/9] md:aspect-[21/9] max-h-[580px] relative overflow-hidden">
-          <div className="absolute inset-0 flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        <div className="w-full relative overflow-hidden">
+          <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {heroImages.map((img, idx) => (
-              <div key={idx} className="w-full h-full shrink-0 relative">
+              <div key={idx} className="w-full shrink-0">
                 <img 
                   src={img.src} 
                   alt={img.alt} 
-                  className="w-full h-full object-cover object-top pointer-events-none" 
+                  className="w-full h-auto pointer-events-none" 
                 />
               </div>
             ))}

@@ -208,7 +208,7 @@ function ContactPage() {
             </p>
           </div>
 
-          <div className="relative aspect-[16/9] sm:aspect-[21/9] bg-steel-900 rounded-xl overflow-hidden shadow-soft border border-steel-700 h-[400px] md:h-[500px]">
+          <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] bg-steel-900 rounded-xl overflow-hidden shadow-soft border border-steel-700">
             <iframe
               title="Industrial Automation Systems Map"
               src="https://maps.google.com/maps?q=28.198996,76.821281&t=&z=15&ie=UTF8&iwloc=&output=embed"

@@ -101,7 +101,7 @@ export function SiteHeader() {
                 Industrial Automation
               </span>
               <span className="font-sans font-bold text-[8px] sm:text-[10px] md:text-xs uppercase tracking-widest text-safety leading-tight mt-0.5 md:mt-1">
-                Pvt. Ltd.
+                System Pvt. Ltd.
               </span>
             </div>
           </Link>
