@@ -62,33 +62,93 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className={`bg-white border-b border-steel-700 sticky top-0 z-50 shadow-sm transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
-        {/* Full-width search bar overlay inside the header */}
-        {isSearchOpen && (
-          <div className="absolute inset-0 bg-white z-[60] flex items-center px-4 sm:px-6 animate-in fade-in slide-in-from-top-4 duration-300">
-            <div className="max-w-[1440px] mx-auto w-full flex items-center gap-4">
-              <input
-                autoFocus
-                type="text"
-                value={searchQuery}
-                onChange={(e) => handleSearch(e.target.value)}
-                placeholder="Search products, SKUs..."
-                className="flex-1 bg-steel-900 border border-steel-700 text-rubber px-4 py-2.5 font-sans text-sm rounded-md focus:outline-none focus:border-safety transition-colors"
-              />
-              <button
-                onClick={() => {
-                  setIsSearchOpen(false);
-                  setSearchQuery("");
-                  setSearchResults([]);
-                }}
-                className="size-11 flex items-center justify-center text-rubber hover:text-safety transition-colors font-display font-black text-xl"
-              >
-                ✕
-              </button>
+      {/* Search Sidebar Overlay */}
+      {isSearchOpen && (
+        <>
+          <div 
+            className="fixed inset-0 bg-rubber/80 backdrop-blur-sm z-[60] animate-in fade-in duration-300"
+              onClick={() => {
+                setIsSearchOpen(false);
+                setSearchQuery("");
+                setSearchResults([]);
+              }}
+            />
+            <div className="fixed top-0 right-0 bottom-0 w-full sm:w-[400px] bg-white z-[70] shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+              <div className="p-4 border-b border-steel-700 flex items-center gap-3 bg-steel-900">
+                <input
+                  autoFocus
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => handleSearch(e.target.value)}
+                  placeholder="Search products, SKUs..."
+                  className="flex-1 bg-white border border-steel-700 text-rubber px-4 py-2.5 font-sans text-sm rounded-md focus:outline-none focus:border-safety transition-colors"
+                />
+                <button
+                  onClick={() => {
+                    setIsSearchOpen(false);
+                    setSearchQuery("");
+                    setSearchResults([]);
+                  }}
+                  className="size-10 shrink-0 flex items-center justify-center text-white hover:text-safety transition-colors font-display font-black text-xl bg-rubber rounded-md"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <div className="flex-1 overflow-y-auto bg-white p-4">
+                {searchQuery.trim().length > 1 && searchResults.length === 0 ? (
+                  <div className="text-center text-rubber/60 font-sans text-sm mt-8">
+                    No products found matching "{searchQuery}"
+                  </div>
+                ) : searchResults.length > 0 ? (
+                  <div className="space-y-3">
+                    <div className="text-[10px] font-sans text-steel-500 uppercase tracking-widest mb-3">
+                      Found {searchResults.length} Products
+                    </div>
+                    {searchResults.map((p) => (
+                      <Link
+                        key={p.id}
+                        to="/product/$id"
+                        params={{ id: p.id }}
+                        onClick={() => {
+                          setSearchQuery("");
+                          setSearchResults([]);
+                          setIsSearchOpen(false);
+                        }}
+                        className="flex items-center gap-4 p-2 rounded-md hover:bg-steel-900 border border-transparent hover:border-steel-700 group transition-colors"
+                      >
+                        <div className="size-16 bg-white rounded border border-steel-700 overflow-hidden shrink-0">
+                          <img
+                            src={p.image}
+                            className="w-full h-full object-contain p-1 transition-all"
+                            alt={p.name}
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0 text-left">
+                          <div className="font-display font-black text-sm text-rubber group-hover:text-safety line-clamp-2 uppercase leading-tight">
+                            {p.name}
+                          </div>
+                          <div className="font-sans text-[10px] text-safety uppercase mt-1">
+                            {p.sku} · {p.group}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center text-rubber/40 font-sans text-sm mt-8 flex flex-col items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="size-12 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <span>Start typing to search products</span>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          </>
         )}
 
+      <header className={`bg-white border-b border-steel-700 sticky top-0 z-50 shadow-sm transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
         <div className="max-w-[1440px] mx-auto px-4 lg:px-6 py-3.5 flex items-center justify-between gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 md:gap-3 shrink-0 group">
@@ -177,47 +237,7 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* Live search results overlay (Absolute) */}
-        {searchResults.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-1 mx-4 bg-white border border-steel-700 shadow-2xl z-[70] rounded-md overflow-hidden animate-in fade-in slide-in-from-top-2">
-            <div className="bg-steel-900 px-4 py-2 border-b border-steel-700 text-[10px] font-sans text-steel-500 uppercase tracking-widest flex justify-between">
-              <span>Found {searchResults.length} Products</span>
-              <button onClick={() => setSearchResults([])} className="hover:text-safety font-black">
-                ✕
-              </button>
-            </div>
-            {searchResults.map((p) => (
-              <Link
-                key={p.id}
-                to="/product/$id"
-                params={{ id: p.id }}
-                onClick={() => {
-                  setSearchQuery("");
-                  setSearchResults([]);
-                  setIsSearchOpen(false);
-                }}
-                className="flex items-center gap-4 p-3 hover:bg-steel-900 border-b border-steel-700 last:border-b-0 group"
-              >
-                <div className="size-12 bg-steel-900 rounded border border-steel-700 overflow-hidden shrink-0">
-                  <img
-                    src={p.image}
-                    className="w-full h-full object-cover transition-all"
-                    alt={p.name}
-                  />
-                </div>
-                <div className="flex-1 min-w-0 text-left">
-                  <div className="font-display font-black text-sm text-rubber group-hover:text-safety truncate uppercase">
-                    {p.name}
-                  </div>
-                  <div className="font-sans text-[10px] text-safety uppercase mt-0.5">
-                    {p.sku} · {p.group}
-                  </div>
-                </div>
-                <div className="font-display font-black text-sm text-safety">₹{p.price}</div>
-              </Link>
-            ))}
-          </div>
-        )}
+
 
         {/* Mobile Navbar Links Overlay */}
         <div className={`md:hidden overflow-hidden transition-all duration-300 border-t border-steel-700 bg-steel-900 ${isMenuOpen ? "max-h-[500px] py-4" : "max-h-0"}`}>

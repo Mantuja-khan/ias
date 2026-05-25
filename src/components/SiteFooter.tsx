@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { COMPANY } from "@/data/company";
+import logo from "@/assets/iaslogo.png";
 
 export function SiteFooter() {
   return (
-    <footer 
+    <footer
       className="text-white border-t-4 border-safety bg-cover bg-center bg-no-repeat relative overflow-hidden"
       style={{ backgroundImage: "url('https://i.pinimg.com/1200x/3e/f3/e2/3ef3e23e8bad050d40a4fc02ffc6f964.jpg')" }}
     >
@@ -12,10 +13,12 @@ export function SiteFooter() {
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="lg:col-span-1">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="size-12 gradient-blue flex items-center justify-center text-white font-display font-black rounded-md">
-              IAS
-            </div>
+          <div className="flex items-center gap-3 mb-5 group">
+            <img
+              src={logo}
+              alt="IAS Logo"
+              className="h-16 w-auto object-contain bg-white p-2 rounded-md"
+            />
             <div className="leading-tight">
               <div className="font-display font-black text-base uppercase tracking-tight">
                 Industrial
@@ -67,6 +70,13 @@ export function SiteFooter() {
               </Link>
             </li>
           </ul>
+
+          <div className="font-display font-black text-sm uppercase tracking-widest mt-8 mb-3 text-safety">
+            Address
+          </div>
+          <p className="text-sm text-white/80 leading-relaxed font-sans">
+            20/1/2/2 , sector 18, Near Avalon Rangoli , Dharuhera , Rewari , Haryana -12106
+          </p>
         </div>
 
         <div>
@@ -114,16 +124,6 @@ export function SiteFooter() {
                 </a>
               </li>
             ))}
-            <li className="pt-2 border-t border-white/10 mt-2">
-              <span className="text-safety font-sans uppercase tracking-widest text-[10px]">Factory:</span>
-              <br />
-              {COMPANY.factory}
-            </li>
-            <li>
-              <span className="text-safety font-sans uppercase tracking-widest text-[10px]">Regd. Office:</span>
-              <br />
-              {COMPANY.regd}
-            </li>
           </ul>
         </div>
       </div>
