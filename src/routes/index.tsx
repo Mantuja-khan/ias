@@ -8,9 +8,8 @@ import { categories, products } from "@/data/products";
 import { channelPartners, clients, COMPANY } from "@/data/company";
 import { services } from "@/data/services";
 
-import mechenicalImg from "@/assets/mechenical.png";
-import electricalImg from "@/assets/electrical.png";
-import instrumentationImg from "@/assets/instrumentation.png";
+import ias1Img from "@/assets/ias1.png";
+import ias2Img from "@/assets/ias2.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,9 +33,8 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const heroImages = [
-    { src: instrumentationImg, alt: "Instrumentation" },
-    { src: electricalImg, alt: "Electrical" },
-    { src: mechenicalImg, alt: "Mechanical" },
+    { src: ias1Img, alt: "IAS Industrial Automation" },
+    { src: ias2Img, alt: "IAS Solutions" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
