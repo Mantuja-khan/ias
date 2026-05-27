@@ -4,6 +4,7 @@ export const COMPANY = {
   phones: ["+91-9992291037", "+91-9812474635", "+91-9649600775"],
   emails: ["sales@iasgroups.com", "industrialautomation18@gmail.com"],
   website: "www.iasgroups.com",
+  address: "20/1/2/2, Sector 18, Near Avalon Rangoli, Dharuhera, Rewari, Haryana - 121106",
   factory: "Plot No. 205, Sector-1 Aravali Bihar, Near Mansa Chowk, Bhiwadi",
   regd: "1002, B-19, AVL-36, Sector-36A, Gurgaon, Haryana, India-122001",
 } as const;

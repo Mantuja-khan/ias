@@ -163,31 +163,15 @@ function ContactPage() {
 
           <div className="bg-white border border-steel-700 p-6 rounded-lg">
             <div className="font-mono text-[10px] uppercase tracking-widest text-safety font-bold mb-3">
-              Factory
+              Office Address
             </div>
-            <p className="text-sm text-rubber leading-relaxed">{COMPANY.factory}</p>
+            <p className="text-sm text-rubber leading-relaxed">{COMPANY.address}</p>
           </div>
 
-          <div className="bg-white border border-steel-700 p-6 rounded-lg">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-safety font-bold mb-3">
-              Registered Office
-            </div>
-            <p className="text-sm text-rubber leading-relaxed">{COMPANY.regd}</p>
-          </div>
 
-          <div className="gradient-blue text-white p-6 rounded-lg shadow-soft">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-white/80 font-bold mb-2">
-              Online
-            </div>
-            <a
-              href={`https://${COMPANY.website}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-display font-black text-xl uppercase hover:underline"
-            >
-              {COMPANY.website}
-            </a>
-          </div>
+
+
+
         </div>
       </section>
 
