@@ -52,33 +52,28 @@ function PartnersPage() {
       </section>
 
       <section className="max-w-[1440px] mx-auto px-6 py-16 w-full">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-          {channelPartners.map((p, i) => (
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+          {channelPartners.map((p) => (
             <div
               key={p.name}
-              className="bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-6 rounded-md flex flex-col justify-between items-center h-[180px] group animate-fade-in"
+              className="bg-white border border-steel-700 hover:border-safety hover:shadow-soft transition-all p-4 rounded-md flex items-center justify-center h-[120px] group animate-fade-in"
             >
-              <div className="font-mono text-[10px] text-steel-500 uppercase tracking-widest w-full text-left">
-                {String(i + 1).padStart(2, "0")} / {String(channelPartners.length).padStart(2, "0")}
-              </div>
-              <div className="flex-1 flex items-center justify-center w-full">
-                {p.image ? (
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    className="max-h-[80px] max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
-                  />
-                ) : (
-                  <div className="size-16 mx-auto gradient-blue text-white font-display font-black flex items-center justify-center rounded-md text-xl group-hover:scale-110 transition-transform">
-                    {p.name
-                      .split(/\s|\+/)
-                      .filter(Boolean)
-                      .slice(0, 2)
-                      .map((w) => w[0])
-                      .join("")}
-                  </div>
-                )}
-              </div>
+              {p.image ? (
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="max-h-[80px] max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+              ) : (
+                <div className="size-12 mx-auto gradient-blue text-white font-display font-black flex items-center justify-center rounded-md text-lg group-hover:scale-110 transition-transform">
+                  {p.name
+                    .split(/\s|\+/)
+                    .filter(Boolean)
+                    .slice(0, 2)
+                    .map((w) => w[0])
+                    .join("")}
+                </div>
+              )}
             </div>
           ))}
         </div>

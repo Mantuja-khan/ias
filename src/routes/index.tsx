@@ -96,7 +96,7 @@ function Home() {
       <SiteHeader />
 
       {/* HERO SLIDER */}
-      <section 
+      <section
         className="relative border-b border-steel-700 overflow-hidden select-none cursor-grab active:cursor-grabbing bg-steel-950 flex items-center justify-center w-full"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -110,10 +110,10 @@ function Home() {
           <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {heroImages.map((img, idx) => (
               <div key={idx} className="w-full shrink-0">
-                <img 
-                  src={img.src} 
-                  alt={img.alt} 
-                  className="w-full h-auto pointer-events-none" 
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-auto pointer-events-none"
                 />
               </div>
             ))}
@@ -237,9 +237,7 @@ function Home() {
       <section className="bg-white border-b border-steel-700 py-12">
         <div className="max-w-[1440px] mx-auto px-6 mb-8 flex items-end justify-between gap-4">
           <div>
-            <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2">
-              Authorised Network
-            </div>
+
             <h2 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-rubber uppercase tracking-tighter">
               Channel Partners
             </h2>
@@ -248,19 +246,17 @@ function Home() {
             to="/channel-partners"
             className="text-safety font-sans font-bold text-sm hover:underline uppercase tracking-widest whitespace-nowrap"
           >
-            View More Partners →
+            More  →
           </Link>
         </div>
-        <LogoMarquee items={channelPartners} />
+        <LogoMarquee items={channelPartners} speed="slow" />
       </section>
 
       {/* CLIENTS MARQUEE */}
       <section className="gradient-soft-blue border-b border-steel-700 py-12">
         <div className="max-w-[1440px] mx-auto px-6 mb-8 flex items-end justify-between gap-4">
           <div>
-            <div className="font-sans text-xs text-safety uppercase tracking-widest font-bold mb-2">
-              Trusted By
-            </div>
+
             <h2 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-rubber uppercase tracking-tighter">
               Our Clients
             </h2>
@@ -269,7 +265,7 @@ function Home() {
             to="/clients"
             className="text-rubber font-sans font-bold text-sm hover:underline uppercase tracking-widest whitespace-nowrap"
           >
-            View More Clients →
+            More →
           </Link>
         </div>
         <LogoMarquee items={clients.map((c) => ({ name: c.name, tag: c.sector, image: c.image }))} reverse speed="slow" />
@@ -355,7 +351,7 @@ function Home() {
 
       {/* CTA */}
       {/* CTA */}
-      <section 
+      <section
         className="text-white relative border-t border-steel-700 py-16 lg:py-24 w-full bg-cover bg-center"
         style={{ backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/736x/35/b6/67/35b667a4082809c4af5fe38a7e035b52.jpg')" }}
       >
