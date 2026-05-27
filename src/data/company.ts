@@ -58,7 +58,6 @@ export const clients: { name: string; sector?: string; image?: string }[] = [
   { name: "Client 1", image: new URL("../assets/clients/image.png", import.meta.url).href },
   { name: "Client 2", image: new URL("../assets/clients/image copy 2.png", import.meta.url).href },
   { name: "Client 3", image: new URL("../assets/clients/image copy 3.png", import.meta.url).href },
-  { name: "Client 4", image: new URL("../assets/clients/image copy 4.png", import.meta.url).href },
   { name: "Client 5", image: new URL("../assets/clients/image copy 5.png", import.meta.url).href },
   { name: "Client 6", image: new URL("../assets/clients/image copy 6.png", import.meta.url).href },
   { name: "Client 7", image: new URL("../assets/clients/image copy 7.png", import.meta.url).href },
