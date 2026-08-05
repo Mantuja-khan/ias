@@ -4,6 +4,7 @@ type Props = {
   className?: string;
 };
 
+
 export function ProductImage({ name, src, className = "" }: Props) {
   const imageSrc = src || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrXPHgfK5Eeb7mXiY2vuGyRYX9M_CY03pAyQ&s";
   
